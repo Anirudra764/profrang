@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, PlayCircle } from "lucide-react";
+import { TubesBackground } from "@/components/ui/TubesBackground";
+import { Hyperspeed, hyperspeedPresets } from "@/components/ui/Hyperspeed";
 
 import crowdRedImg from "@assets/IMG_6890_1780673664118.JPG";
 import vocalistImg from "@assets/IMG_6750_1780673664112.JPG";
@@ -13,72 +15,78 @@ export function Home() {
     <div className="w-full">
       {/* Hero Section */}
       <section className="relative h-[100dvh] w-full flex items-end justify-center overflow-hidden pb-16 sm:pb-20 md:items-center md:pb-0">
-        {/* Background Image */}
-        <div className="absolute inset-0 w-full h-full">
-          {/* Strong top gradient so navbar stays fully readable */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black via-black/50 to-black z-10" />
-          {/* Subtle side vignettes */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,black_100%)] z-10" />
-          <img
-            src={crowdRedImg}
-            alt="Rangrez Concert Crowd in Red Lighting"
-            className="w-full h-full object-cover object-center"
-          />
-        </div>
+        <TubesBackground 
+          className="absolute inset-0 w-full h-full bg-transparent"
+          canvasClassName="mix-blend-screen opacity-70"
+        >
+          {/* Background Image layer underneath (must be -z-10 so canvas draws on top) */}
+          <div className="absolute inset-0 w-full h-full -z-10 pointer-events-none">
+            {/* Strong top gradient so navbar stays fully readable */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black via-black/50 to-black z-10" />
+            {/* Subtle side vignettes */}
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,black_100%)] z-10" />
+            <img
+              src={crowdRedImg}
+              alt="Rangrez Concert Crowd in Red Lighting"
+              className="w-full h-full object-cover object-center"
+            />
+          </div>
 
-        <div className="container relative z-20 px-5 sm:px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: "easeOut" }}
-          >
-            {/* Fluid hero type — comfortable at every screen size */}
-            <h1
-              className="font-display leading-none tracking-wide mb-6 drop-shadow-2xl"
-              style={{ fontSize: "clamp(2.4rem, 7vw, 6rem)" }}
-            >
-              <span className="block text-primary">SOUL.</span>
-              <span className="block text-white">VIBE.</span>
-              <span className="block text-white/80">ENERGY.</span>
-            </h1>
-          </motion.div>
+          <div className="container relative z-20 h-full flex items-end justify-center pb-16 sm:pb-20 md:items-center md:pb-0 px-5 sm:px-6 text-center pointer-events-none">
+            <div className="max-w-xl mx-auto w-full">
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.9, ease: "easeOut" }}
+              >
+                {/* Fluid hero type — comfortable at every screen size */}
+                <h1
+                  className="font-display leading-none tracking-wide mb-6 drop-shadow-2xl"
+                  style={{ fontSize: "clamp(2.4rem, 7vw, 6rem)" }}
+                >
+                  <span className="block text-primary">SOUL.</span>
+                  <span className="block text-white">VIBE.</span>
+                  <span className="block text-white/80">ENERGY.</span>
+                </h1>
+              </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="max-w-xl mx-auto"
-          >
-            <p
-              className="text-white/75 font-light mb-8 tracking-wide"
-              style={{ fontSize: "clamp(0.9rem, 2.5vw, 1.2rem)" }}
-            >
-              We don't just play music, we create feelings.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-              <Button
-                asChild
-                size="lg"
-                className="h-12 sm:h-14 px-7 sm:px-10 rounded-full font-display tracking-widest w-full sm:w-auto"
-                style={{ fontSize: "clamp(0.85rem, 2vw, 1.1rem)" }}
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
               >
-                <Link href="/events">Be Part of the Vibe</Link>
-              </Button>
-              <Button
-                asChild
-                variant="outline"
-                size="lg"
-                className="h-12 sm:h-14 px-7 sm:px-10 rounded-full font-display tracking-widest bg-white/10 hover:bg-white/20 border-white/25 w-full sm:w-auto backdrop-blur-sm"
-                style={{ fontSize: "clamp(0.85rem, 2vw, 1.1rem)" }}
-              >
-                <Link href="/experience">
-                  <PlayCircle className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-                  Watch Experience
-                </Link>
-              </Button>
+                <p
+                  className="text-white/75 font-light mb-8 tracking-wide"
+                  style={{ fontSize: "clamp(0.9rem, 2.5vw, 1.2rem)" }}
+                >
+                  We don't just play music, we create feelings.
+                </p>
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                  <Button
+                    asChild
+                    size="lg"
+                    className="h-12 sm:h-14 px-7 sm:px-10 rounded-full font-display tracking-widest w-full sm:w-auto pointer-events-auto"
+                    style={{ fontSize: "clamp(0.85rem, 2vw, 1.1rem)" }}
+                  >
+                    <Link href="/events">Be Part of the Vibe</Link>
+                  </Button>
+                  <Button
+                    asChild
+                    variant="outline"
+                    size="lg"
+                    className="h-12 sm:h-14 px-7 sm:px-10 rounded-full font-display tracking-widest bg-white/10 hover:bg-white/20 border-white/25 w-full sm:w-auto backdrop-blur-sm pointer-events-auto"
+                    style={{ fontSize: "clamp(0.85rem, 2vw, 1.1rem)" }}
+                  >
+                    <Link href="/experience">
+                      <PlayCircle className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+                      Watch Experience
+                    </Link>
+                  </Button>
+                </div>
+              </motion.div>
             </div>
-          </motion.div>
-        </div>
+          </div>
+        </TubesBackground>
       </section>
 
       {/* Social Proof Strip */}
@@ -202,15 +210,28 @@ export function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-32 relative text-center px-4">
-        <div className="container max-w-3xl mx-auto relative z-10">
-          <h2 className="font-display text-4xl md:text-5xl mb-6">Feel the Soul.<br/><span className="text-primary">Live the Vibe.</span></h2>
-          <p className="text-xl text-white/70 mb-10">
-            Join the community of music lovers in Jamshedpur. Don't miss out on the next unforgettable night.
-          </p>
-          <Button asChild size="lg" className="h-12 px-10 rounded-full font-display text-base tracking-widest">
-            <Link href="/community">Join the Community</Link>
-          </Button>
+      <section className="relative py-32 overflow-hidden text-center px-4">
+        <Hyperspeed 
+          effectOptions={{
+            ...hyperspeedPresets.four,
+            colors: {
+              ...hyperspeedPresets.four.colors,
+              leftCars: [0xd856bf, 0x6750a2, 0xc247ac],
+              rightCars: [0xff0055, 0xff0022, 0xff3300],
+            }
+          }}
+          className="absolute inset-0 w-full h-full opacity-40 mix-blend-screen pointer-events-auto"
+        />
+        <div className="container max-w-3xl mx-auto relative z-10 pointer-events-none">
+          <div className="pointer-events-auto">
+            <h2 className="font-display text-4xl md:text-5xl mb-6">Feel the Soul.<br/><span className="text-primary">Live the Vibe.</span></h2>
+            <p className="text-xl text-white/70 mb-10">
+              Join the community of music lovers in Jamshedpur. Don't miss out on the next unforgettable night.
+            </p>
+            <Button asChild size="lg" className="h-12 px-10 rounded-full font-display text-base tracking-widest">
+              <Link href="/community">Join the Community</Link>
+            </Button>
+          </div>
         </div>
       </section>
     </div>
