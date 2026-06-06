@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Rangrez Encore"
+version = "1.0.0"
+id = "artifacts/rangrez-encore"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 19402
+
+[services.development]
+run = "pnpm --filter @workspace/rangrez-encore run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/rangrez-encore", "run", "build" ]
+publicDir = "artifacts/rangrez-encore/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "19402"
+BASE_PATH = "/"
