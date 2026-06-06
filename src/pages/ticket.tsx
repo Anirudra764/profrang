@@ -90,9 +90,7 @@ export function TicketConfirmation() {
             {ticket.totalAmount > 0 && (
               <Row label="Total" value={`₹${ticket.totalAmount}`} highlight />
             )}
-            {ticket.totalAmount === 0 && (
-              <Row label="Payment" value="Pay at venue" />
-            )}
+            <Row label="Payment" value="Pay at venue" />
           </div>
 
           <div className="border-t border-white/10 px-6 py-5 bg-black/30 space-y-3">

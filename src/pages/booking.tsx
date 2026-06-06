@@ -30,8 +30,8 @@ const EVENTS: Record<string, {
     date: "August 2026",
     venue: "Secret Location, Jamshedpur (TBA)",
     ticketTypes: [
-      { label: "General Entry", price: 0 },
-      { label: "VIP Pass", price: 0 },
+      { label: "General Entry", price: 149 },
+      { label: "VIP Pass", price: 269 },
     ],
   },
 };

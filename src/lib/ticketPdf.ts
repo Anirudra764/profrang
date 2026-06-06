@@ -107,7 +107,7 @@ export function generateTicketPDF(data: TicketData): void {
     doc.setTextColor(...white);
     doc.setFont("helvetica", "bold");
     doc.setFontSize(11);
-    doc.text(`TOTAL PAID: \u20B9${data.totalAmount}`, w / 2, totalY + 9, { align: "center" });
+    doc.text(`TOTAL AMOUNT: \u20B9${data.totalAmount}`, w / 2, totalY + 9, { align: "center" });
   }
 
   const cutY = 190;
